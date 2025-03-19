@@ -85,8 +85,6 @@ Once connected, the service will be able to trigger the delivery creation proces
 2. **Process Automation**: Use **Camunda** for workflow orchestration.
 3. **Service Integration**: Leverage various messaging queues and databases like **Kafka**, **RabbitMQ**, **PostgreSQL**, and **Elasticsearch**.
 
-## License 📄
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contributions 🤝
 Feel free to contribute to the project by opening an issue or creating a pull request. If you're interested in contributing, please follow the standard GitHub workflow:
@@ -95,9 +93,6 @@ Feel free to contribute to the project by opening an issue or creating a pull re
 3. Commit your changes
 4. Push to the feature branch
 5. Open a pull request for review
-
-## Contact 📬
-For any questions or inquiries, please contact [your.email@example.com](mailto:your.email@example.com).
 
 ---
 
