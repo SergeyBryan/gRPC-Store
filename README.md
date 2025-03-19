@@ -1,7 +1,3 @@
-# gRPC-Store
-
-Here's a complete `README.md` for your `gRPC-Store` project, formatted in markdown with appropriate headings, emojis, and a clean layout for clarity.
-
 ```markdown
 # gRPC-Store 🚚
 
