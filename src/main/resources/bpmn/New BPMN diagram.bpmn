@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="6894ce1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="Process_0wat2l5" name="New BPMN diagram" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:properties>
+        <zeebe:property />
+      </zeebe:properties>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="Start_delivery">
+      <bpmn:outgoing>Flow_1g3psa4</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0ll149d">
+      <bpmn:incoming>Flow_05ptp0l</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1g3psa4" sourceRef="Start_delivery" targetRef="startDeliveryProcess" />
+    <bpmn:sequenceFlow id="Flow_07a7cuo" sourceRef="startDeliveryProcess" targetRef="findOrder" />
+    <bpmn:exclusiveGateway id="delivery_status" name="Check deliveryActive status" default="Flow_05ptp0l">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0e19wad</bpmn:incoming>
+      <bpmn:outgoing>Flow_05ptp0l</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0ay75zm</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_05ptp0l" sourceRef="delivery_status" targetRef="Event_0ll149d" />
+    <bpmn:sequenceFlow id="Flow_0ay75zm" sourceRef="delivery_status" targetRef="Activity_0hpcgmc">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="startDeliveryProcess" name="Create order in system">
+      <bpmn:documentation>Doc. link</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:executionListeners>
+          <zeebe:executionListener eventType="start" retries="1" type="startDeliveryProcess" />
+        </zeebe:executionListeners>
+        <zeebe:taskDefinition type="startDeliveryProcess" retries="1" />
+        <zeebe:ioMapping>
+          <zeebe:input source="= {&#10;    &#34;id&#34;: 123,&#10;    &#34;itemName&#34;: &#34;Item Name&#34;,&#10;    &#34;quantity&#34;: 50&#10;  }" target="itemEntity" />
+          <zeebe:output source="=itemId" target="itemId" />
+        </zeebe:ioMapping>
+        <zeebe:properties>
+          <zeebe:property name="camundaModeler:exampleOutputJson" value="{&#10;    &#34;id&#34;: 123,&#10;    &#34;itemName&#34;: &#34;Item Name&#34;,&#10;    &#34;quantity&#34;: 50&#10;  }" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1g3psa4</bpmn:incoming>
+      <bpmn:outgoing>Flow_07a7cuo</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0hpcgmc">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="deliveryStatus" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ay75zm</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="findOrder" name="Find order in system">
+      <bpmn:documentation>Doc. link</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="findOrderJob" retries="1" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=itemId" target="itemId" />
+          <zeebe:output source="=itemId" target="itemId" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_07a7cuo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0e19wad</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0e19wad" sourceRef="findOrder" targetRef="delivery_status" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0wat2l5">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Start_delivery">
+        <dc:Bounds x="152" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ll149d_di" bpmnElement="Event_0ll149d">
+        <dc:Bounds x="772" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0t4u6oi_di" bpmnElement="delivery_status" isMarkerVisible="true">
+        <dc:Bounds x="505" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="494" y="85" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vzoree_di" bpmnElement="startDeliveryProcess">
+        <dc:Bounds x="250" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m4bmnd_di" bpmnElement="Activity_0hpcgmc">
+        <dc:Bounds x="740" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1hp94mj" bpmnElement="findOrder">
+        <dc:Bounds x="380" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1g3psa4_di" bpmnElement="Flow_1g3psa4">
+        <di:waypoint x="188" y="140" />
+        <di:waypoint x="250" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05ptp0l_di" bpmnElement="Flow_05ptp0l">
+        <di:waypoint x="555" y="140" />
+        <di:waypoint x="772" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0e19wad_di" bpmnElement="Flow_0e19wad">
+        <di:waypoint x="480" y="140" />
+        <di:waypoint x="505" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ay75zm_di" bpmnElement="Flow_0ay75zm">
+        <di:waypoint x="530" y="165" />
+        <di:waypoint x="530" y="250" />
+        <di:waypoint x="740" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07a7cuo_di" bpmnElement="Flow_07a7cuo">
+        <di:waypoint x="350" y="140" />
+        <di:waypoint x="380" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

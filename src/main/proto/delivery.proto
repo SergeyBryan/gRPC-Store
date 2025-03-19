@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package com.sbryan.grpcstore;
+
+import "google/protobuf/empty.proto";
+import "driver.proto";
+
+message Delivery{
+  string delivery_id = 1;
+  string store_name = 2;
+  string delivery_type = 3;
+  string delivery_status = 4;
+  string city = 5;
+  int32 delivery_stock = 6;
+  int32 delivery_sum = 7;
+  int32 delivery_weight = 8;
+  int32 driver_id = 9;
+}
+
+service DeliveryService{
+
+  rpc GetCurrentProfile (google.protobuf.Empty) returns (Delivery) {}
+  rpc createDelivery (Delivery) returns (Delivery) {}
+
+}
+
+message CreateDeliveryRequest{
+  Delivery profile = 1;
+}
