@@ -1,0 +1,59 @@
+spring:
+  main:
+    banner-mode:
+      off
+    allow-bean-definition-overriding: true
+  # rabbitMQ:
+  rabbitmq:
+    host: localhost
+    virtual-host: /
+    password: admin
+    username: admin
+
+  # activeMQ:
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+  datasource:
+    username: postgres
+    password: mysecretpassword
+    url: jdbc:postgresql://localhost:5432/product
+    name: product
+    driver-class-name: org.postgresql.Driver
+  elasticsearch:
+    uris: http://localhost:9200
+activemq:
+  destination: mySystem
+
+
+zeebe:
+  client:
+    cloud:
+      cluster-id: 25771823-bd20-4578-b964-f3d988dd34c9
+      client-id: P5bNWX2i_4SjT_iTRqCkxeJ34O0tFmbO
+      client-secret: XhsOtS-vt9XVW3dMHAgIkohuOvkXbuw-RcoIOHJp4cdc-E-nxGgm17~-r28-nq3m
+      region: syd-1
+    broker.grpc-address: grpcs://25771823-bd20-4578-b964-f3d988dd34c9.syd-1.zeebe.camunda.io
+server:
+  port: 8081
+
+# kafka
+grpcstore:
+  kafka:
+    servers: localhost:9092
+    topic-name: topic-1
+    topic-name2: topic-2
+    topic-name3: topic-3
+    group-id: my-group
+    delivery-process: deliveryProcess # Topic name for deliveries.
+  rabbit:
+    queueName: mySystem
+    exchangeName: mySystemExchange
+    routingKey: mySystem.key
+
+
+logging:
+  level:
+    org.apache.kafka: off

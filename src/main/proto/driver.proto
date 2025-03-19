@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.sbryan.grpcstore;
+
+message Driver{
+  int64 id = 1;
+  string name = 2;
+  string phone_number = 5;
+  string age = 6;
+}
+
+service DriverService{
+  rpc addDriver(Driver) returns (Driver){}
+  rpc getDriver(GetDriverRequest) returns (Driver){}
+  rpc deleteDriver(DeleteDriverRequest) returns (Driver){}
+}
+
+message GetDriverRequest{
+  int64 id = 1;
+}
+
+message DeleteDriverRequest{
+  int64 id = 1;
+}
