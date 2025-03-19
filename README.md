@@ -1,4 +1,3 @@
-```markdown
 # gRPC-Store 🚚
 
 ## Project Status 🚧
