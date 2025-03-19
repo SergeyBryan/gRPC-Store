@@ -23,6 +23,9 @@ The `gRPC-Store` is a Spring Boot-based Java application that integrates several
 - **Optimize** for business process analytics.
 - **Connectors** for integrating with external systems.
 
+![image](https://github.com/user-attachments/assets/a782dc9d-f106-4a92-855f-63f1d24c71d6)
+
+
 ## Dependencies 📦
 This project includes the following key dependencies:
 
